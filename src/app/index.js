@@ -1,10 +1,14 @@
 import React from "react"
 import { observer, inject } from "mobx-react"
+import { Route, withRouter } from "react-router-dom"
 import styles from "./style.css"
 
-import List from "../list"
+import List from "../components/list"
+import Menu from "../components/menu"
+import MobxList from "../components/mobx_list"
 
 @inject("helperStore")
+@withRouter
 @observer
 export class App extends React.Component {
   componentDidMount() {
@@ -14,7 +18,9 @@ export class App extends React.Component {
   render() {
     return (
       <div className={styles.app}>
-        <List />
+        <Menu />
+        <Route exact path="/" component={List} />
+        <Route exact path="/mobx" component={MobxList} />
       </div>
     )
   }

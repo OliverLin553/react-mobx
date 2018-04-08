@@ -1,0 +1,17 @@
+.todo-list-component {
+
+}
+
+.todo-list {
+  border-bottom: solid 1px #ddd;
+  padding: 20px;
+}
+
+input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  text-indent: 10px;
+  border-radius: 3px;
+  outline: none;
+}

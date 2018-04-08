@@ -1,5 +1,7 @@
 import React from "react"
 
+import style from "./style.css"
+
 export class ListTodo extends React.Component {
   handleOnClick(index) {
     const todo = this.props.todo
@@ -10,8 +12,8 @@ export class ListTodo extends React.Component {
   renderTodoList() {
     return this.props.todo.map((item, index) => {
       return (
-        <li key={index}>
-          <label>{item}</label>
+        <li key={index} className={style["todo-list"]}>
+          <label>{item.name}</label>
           <div onClick={() => this.handleOnClick(index)}>delete</div>
         </li>
       )
@@ -21,7 +23,7 @@ export class ListTodo extends React.Component {
   render() {
     return (
       <div>
-        <ul id="todo-list">
+        <ul className={style["todo-list-component"]}>
           {this.renderTodoList()}
         </ul>
       </div>
