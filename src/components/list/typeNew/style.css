@@ -1,0 +1,26 @@
+.title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+  background: #1F1F1F;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 20px;
+  border-radius: 3px;
+}
+
+.typenew input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  text-indent: 10px;
+  border-radius: 3px;
+}
