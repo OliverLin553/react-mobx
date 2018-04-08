@@ -1,0 +1,46 @@
+.mobx-todo-list {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.mobx-todo-list h1 {
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.btn {
+  width: 80px;
+  height: 40px;
+  background: #1F1F1F;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 20px;
+  border-radius: 3px;
+}
+
+.mobx-input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  text-indent: 10px;
+  border-radius: 3px;
+}
+
+.todo-list {
+  border-bottom: solid 1px #ddd;
+  padding: 20px;
+}

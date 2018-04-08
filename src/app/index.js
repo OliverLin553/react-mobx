@@ -7,7 +7,7 @@ import List from "../components/list"
 import Menu from "../components/menu"
 import MobxList from "../components/mobx_list"
 
-@inject("helperStore")
+@inject("helperStore", "todoListStore")
 @withRouter
 @observer
 export class App extends React.Component {

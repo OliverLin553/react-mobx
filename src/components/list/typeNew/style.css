@@ -16,3 +16,11 @@
   margin-left: 20px;
   border-radius: 3px;
 }
+
+.typenew input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  text-indent: 10px;
+  border-radius: 3px;
+}

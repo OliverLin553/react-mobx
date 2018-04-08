@@ -39,6 +39,8 @@ export class List extends React.Component {
     this.setState({
       todolist: allTask
     })
+
+    this.todoListInput.editField.value = ""
   }
 
   getInputValue() {

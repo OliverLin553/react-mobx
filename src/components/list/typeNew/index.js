@@ -7,7 +7,7 @@ export class TypeNew extends React.Component {
     const { onKeyDown = () => {}, onClick = () => {}} = this.props
 
     return (
-      <div>
+      <div className={style["typenew"]}>
         <div className={style.title}>Add to the todo list</div>
         <input
           ref={(node) => { this.editField = node }}
