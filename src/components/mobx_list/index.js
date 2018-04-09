@@ -32,7 +32,7 @@ export class MobxList extends React.Component {
             return (
               <li key={index} className={style["todo-list"]}>
                 <label>{t.title}</label>
-                <div onClick={() => this.handleOnClick(index)}>delete</div>
+                <div onClick={() => this.handleOnClick(index)} className={style.del}>×</div>
               </li>
             )
           })}

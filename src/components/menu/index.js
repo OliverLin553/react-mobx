@@ -5,7 +5,7 @@ import style from "./style.css"
 export class Menu extends React.Component {
   render() {
     return (
-      <div>
+      <div className={style["menu-component"]}>
         <NavLink to="/" activeClassName={style["active"]} exact>
           state todolist
         </NavLink>

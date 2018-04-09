@@ -1,5 +1,8 @@
 .app {
-
+  background: linear-gradient(135deg, #1ebbca, #ebbca7);
+  min-height: 100vh;
+  padding-top: 20px;
+  overflow: hidden;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -48,4 +51,8 @@ table {
 
 input {
   outline: none;
+}
+
+a:hover {
+  text-decoration: none;
 }

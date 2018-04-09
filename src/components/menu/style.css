@@ -1,3 +1,23 @@
 .active {
-  color: #000;
+  background: #000;
+}
+
+.menu-component {
+  width: 500px;
+  margin: 0 auto;
+  background: #30A6E6;
+  height: 40px;
+  line-height: 40px;
+}
+
+.menu-component a {
+  color: #fff;
+  padding: 0 25px;
+  display: inline-block;
+  transition: all .25s ease;
+  text-decoration: none;
+}
+
+.menu-component a:hover {
+  background: #000;
 }
