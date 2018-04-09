@@ -5,6 +5,7 @@
   padding: 20px;
   overflow: hidden;
   border-radius: 5px;
+  background: #fff;
 }
 
 .mobx-todo-list h1 {
@@ -43,4 +44,16 @@
 .todo-list {
   border-bottom: solid 1px #ddd;
   padding: 20px;
+}
+
+.del {
+  background-color: #1fbbca;
+  float: right;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
 }

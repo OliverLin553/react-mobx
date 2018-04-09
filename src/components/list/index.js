@@ -1,8 +1,8 @@
 import React from "react"
 import { observer, inject } from "mobx-react"
 
-import TypeNew from "./TypeNew"
-import ListTodo from "./ListTodo"
+import TypeNew from "./typeNew"
+import ListTodo from "./listTodo"
 
 import style from "./style.css"
 
