@@ -1,0 +1,24 @@
+.mobx-input {
+  width: 300px;
+  height: 40px;
+  border: 1px solid #dddddd;
+  text-indent: 10px;
+  border-radius: 3px;
+}
+
+.todo-list {
+  border-bottom: solid 1px #ddd;
+  padding: 20px;
+}
+
+.del {
+  background-color: #1fbbca;
+  float: right;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+}

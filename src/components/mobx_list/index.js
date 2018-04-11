@@ -1,27 +1,35 @@
 import React from "react"
 import { observer, inject } from 'mobx-react'
+
+import ListTodo from "./listTodo"
 import style from "./style.css"
 
 @inject("todoListStore")
 @observer
 export class MobxList extends React.Component {
-  handleKeyDown(event) {
-    if (event.keyCode === 13) {
-      this.AddTodoList(event)
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      edit: false
+    }
+  }
+
+  handleKeyDown(e) {
+    if (e.keyCode === 13) {
+      this.AddTodoList(e)
       this.todoListInput.value = ""
     }
   }
 
-  handleOnClick(index) {
-    this.props.todoListStore.deleteTodo(index)
+  AddTodoList(e, index) {
+    this.props.todoListStore.addTodo(e.target.value, index)
   }
 
-  AddTodoList(event) {
-    this.props.todoListStore.addTodo(event.target.value)
-  }
 
   render() {
     const { todoListStore } = this.props
+
     return (
       <div className={style["mobx-todo-list"]}>
         <h1>
@@ -30,19 +38,18 @@ export class MobxList extends React.Component {
         <ul>
           {todoListStore.todos.map((t, index) => {
             return (
-              <li key={index} className={style["todo-list"]}>
-                <label>{t.title}</label>
-                <div onClick={() => this.handleOnClick(index)} className={style.del}>×</div>
-              </li>
+              <ListTodo t={t} key={index} index={index}  />
             )
           })}
         </ul>
         <div className={style.title}>Add to the todo list</div>
         <input
           className={style["mobx-input"]}
-          ref={(node) => { this.todoListInput = node }}
-          onKeyDown={(event) => this.handleKeyDown(event)} />
-        <span className={style.btn} onClick={(event) => this.AddTodoList(event)}>ADD</span>
+          ref={(node) => {
+            this.todoListInput = node
+          }}
+          onKeyDown={(e) => this.handleKeyDown(e)} />
+        <span className={style.btn} onClick={(e) => this.AddTodoList(e)}>ADD</span>
       </div>
     )
   }
