@@ -13,7 +13,7 @@
 
 .del {
   background-color: #1fbbca;
-  float: right;
+  float: left;
   border: none;
   border-radius: 30px;
   color: #fff;
@@ -21,4 +21,19 @@
   height: 20px;
   text-align: center;
   cursor: pointer;
+}
+
+.todo-right {
+  float: right;
+}
+
+.copy {
+  float: left;
+  cursor: pointer;
+}
+
+.insert-todo {
+  float: left;
+  cursor: pointer;
+  margin: 0 10px;
 }

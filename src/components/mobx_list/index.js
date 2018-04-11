@@ -26,7 +26,6 @@ export class MobxList extends React.Component {
     this.props.todoListStore.addTodo(e.target.value, index)
   }
 
-
   render() {
     const { todoListStore } = this.props
 
@@ -38,7 +37,7 @@ export class MobxList extends React.Component {
         <ul>
           {todoListStore.todos.map((t, index) => {
             return (
-              <ListTodo t={t} key={index} index={index}  />
+              <ListTodo t={t} key={index} index={index} />
             )
           })}
         </ul>
