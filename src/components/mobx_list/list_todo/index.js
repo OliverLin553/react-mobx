@@ -2,7 +2,9 @@ import React from "react"
 import { observer, inject } from 'mobx-react'
 import style from "./style.css"
 
-@inject("todoListStore")
+@inject(stores => ({
+  todoListStore: stores.rootStore.todoListStore
+}))
 @observer
 export class ListTodo extends React.Component {
   constructor(props) {
@@ -27,8 +29,9 @@ export class ListTodo extends React.Component {
   }
 
   handleOnBlur(e) {
+    const { t, todoListStore } = this.props
     if(e.target.value !== this.props.t.title) {
-      this.props.todoListStore.updateTodo(this.props.index, e.target.value)
+      todoListStore.updatePosts(t.id, { title: e.target.value })
     }
 
     this.setState({
@@ -42,8 +45,10 @@ export class ListTodo extends React.Component {
   }
 
   handleKeyDown(e) {
+    const { t, todoListStore } = this.props
+
     if (e.keyCode === 13) {
-      this.props.todoListStore.updateTodo(this.props.index, e.target.value)
+      todoListStore.updatePosts(t.id, { title: e.target.value })
 
       this.setState({
         edit: false

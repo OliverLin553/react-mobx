@@ -1,12 +1,11 @@
 import React from "react"
 import { observer, inject } from "mobx-react"
 
-import TypeNew from "./typeNew"
-import ListTodo from "./listTodo"
+import TypeNew from "./type_new"
+import ListTodo from "./list_todo"
 
 import style from "./style.css"
 
-@inject("helperStore")
 @observer
 export class List extends React.Component {
   constructor(props) {

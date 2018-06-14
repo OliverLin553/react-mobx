@@ -5,6 +5,18 @@ const headersInfo = () => ({
   "Content-Type": "application/json"
 })
 
-export const fetchAssemblies = () => axios.get("/api/v1/assemblies", {
+export const fetchPosts = () => axios.get("/api/posts", {
   headers: headersInfo()
 })
+
+export const createPost = data => axios.post(
+  "/api/posts",
+  data,
+  { headers: headersInfo() }
+)
+
+export const updatePosts = (id, data) => axios.put(
+  `/api/posts/${id}`,
+  data,
+  { headers: headersInfo() }
+)

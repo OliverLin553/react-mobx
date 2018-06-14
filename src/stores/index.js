@@ -1,8 +1,7 @@
-import { default as HelperStore } from "./helper_store"
 import { default as TodoListStore } from "./todo_list"
 
-export const stores = {
-  viewStore: "",
-  helperStore: HelperStore,
-  todoListStore: TodoListStore
+export default class RootStore {
+  constructor() {
+    this.todoListStore = new TodoListStore(this)
+  }
 }
