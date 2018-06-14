@@ -1,10 +1,12 @@
 import React from "react"
 import { observer, inject } from 'mobx-react'
 
-import ListTodo from "./listTodo"
+import ListTodo from "./list_todo"
 import style from "./style.css"
 
-@inject("todoListStore")
+@inject(stores => ({
+  todoListStore: stores.rootStore.todoListStore
+}))
 @observer
 export class MobxList extends React.Component {
   constructor(props) {
@@ -17,29 +19,34 @@ export class MobxList extends React.Component {
 
   handleKeyDown(e) {
     if (e.keyCode === 13) {
-      this.AddTodoList(e)
+      this.AddTodoList()
       this.todoListInput.value = ""
     }
   }
 
-  AddTodoList(e, index) {
-    this.props.todoListStore.addTodo(e.target.value, index)
+  AddTodoList() {
+    const { todoListStore } = this.props
+
+    todoListStore.createPost({ title: this.todoListInput.value })
+    this.todoListInput.value = ""
+  }
+
+  renderList() {
+    const { todoListStore } = this.props
+
+    return todoListStore.post.map((t, index) => (
+      <ListTodo t={t} key={index} index={index} />
+    ))
   }
 
   render() {
-    const { todoListStore } = this.props
-
     return (
       <div className={style["mobx-todo-list"]}>
         <h1>
           mobx Todo list
         </h1>
         <ul>
-          {todoListStore.todos.map((t, index) => {
-            return (
-              <ListTodo t={t} key={index} index={index} />
-            )
-          })}
+          {this.renderList()}
         </ul>
         <div className={style.title}>Add to the todo list</div>
         <input

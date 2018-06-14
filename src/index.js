@@ -7,13 +7,13 @@ import { BrowserRouter } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/css/bootstrap-theme.css"
 
-import { stores } from "./stores/index"
 import { default as App } from "./app"
+import { default as RootStore } from "./stores"
 
 const renderApp = (Component) => {
   render(
     <AppContainer>
-      <Provider {...stores}>
+      <Provider rootStore={new RootStore()}>
         <BrowserRouter>
           <Component />
         </BrowserRouter>

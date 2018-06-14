@@ -11,7 +11,7 @@ module.exports = merge(common, {
     open: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000/',
+        target: 'http://localhost:3003/',
         pathRewrite: function (path, req) {
           var newPath = path;
           var queryDelimiter = path.includes('?') ? '&' : '?';

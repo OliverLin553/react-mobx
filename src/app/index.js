@@ -7,12 +7,14 @@ import List from "../components/list"
 import Menu from "../components/menu"
 import MobxList from "../components/mobx_list"
 
-@inject("helperStore", "todoListStore")
 @withRouter
+@inject(stores => ({
+  todoListStore: stores.rootStore.todoListStore
+}))
 @observer
 export class App extends React.Component {
   componentDidMount() {
-    this.props.helperStore.loadCategories()
+    this.props.todoListStore.loadPosts()
   }
 
   render() {
