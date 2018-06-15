@@ -1,7 +1,7 @@
 import React from "react"
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from "mobx-react"
 
-import ListTodo from "./list_todo"
+import { default as ListTodo } from "./list_todo"
 import style from "./style.css"
 
 @inject(stores => ({
@@ -9,14 +9,6 @@ import style from "./style.css"
 }))
 @observer
 export class MobxList extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      edit: false
-    }
-  }
-
   handleKeyDown(e) {
     if (e.keyCode === 13) {
       this.AddTodoList()
@@ -34,8 +26,8 @@ export class MobxList extends React.Component {
   renderList() {
     const { todoListStore } = this.props
 
-    return todoListStore.post.map((t, index) => (
-      <ListTodo t={t} key={index} index={index} />
+    return todoListStore.post.map(t => (
+      <ListTodo post={t} key={t.id} />
     ))
   }
 
@@ -54,8 +46,9 @@ export class MobxList extends React.Component {
           ref={(node) => {
             this.todoListInput = node
           }}
-          onKeyDown={(e) => this.handleKeyDown(e)} />
-        <span className={style.btn} onClick={(e) => this.AddTodoList(e)}>ADD</span>
+          onKeyDown={(e) => { this.handleKeyDown(e) }}
+        />
+        <span className={style.btn} onClick={(e) => { this.AddTodoList(e) }}>ADD</span>
       </div>
     )
   }

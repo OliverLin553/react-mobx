@@ -37,7 +37,7 @@ class TodoListStore {
         return data
       }
 
-      throw new Error(message)
+      throw new Error()
     } catch (err) {
       throw err.message || (err.response && err.response.body && err.response.body.errors)
     } finally {
@@ -53,7 +53,6 @@ class TodoListStore {
       const { data } = await client.createPost(post)
 
       if (data) {
-        console.log(data)
         runInAction(() => {
           this.postsRegistry.set(data.id, data)
         })
@@ -61,7 +60,7 @@ class TodoListStore {
         return data
       }
 
-      throw new Error(message)
+      throw new Error()
     } catch (err) {
       throw err.message || (err.response && err.response.body && err.response.body.errors)
     }
@@ -80,38 +79,30 @@ class TodoListStore {
         return data
       }
 
-      throw new Error(message)
+      throw new Error()
     } catch (err) {
       throw err.message || (err.response && err.response.body && err.response.body.errors)
     }
   }
 
-  @action
-  addTodo(id, title) {
-    this.todos.set(id, title)
-  }
 
   @action
-  deleteTodo(index) {
-    this.todos.splice(index, 1)
-  }
+  async deletePost(id) {
+    try {
+      const { data } = await client.deletePost(id)
 
-  @action
-  updateTodo(index, value) {
-    this.todos[index].title = value
-  }
+      if (data) {
+        runInAction(() => {
+          this.postsRegistry.delete(id)
+        })
 
-  @action
-  copyTodo(index) {
-    this.todos.push({
-      title: this.todos[index].title,
-      id: this.todos[this.todos.length - 1].id + 1
-    })
-  }
+        return data
+      }
 
-  @action
-  insertTodo(index) {
-    this.todos.splice(index + 1, 0, { title: "", id: this.todos[index].id / 2 })
+      throw new Error()
+    } catch (err) {
+      throw err.message || (err.response && err.response.body && err.response.body.errors)
+    }
   }
 }
 

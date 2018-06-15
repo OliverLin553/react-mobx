@@ -1,5 +1,5 @@
 import React from "react"
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from "mobx-react"
 import style from "./style.css"
 
 @inject(stores => ({
@@ -16,9 +16,9 @@ export class ListTodo extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.state.edit) {
+    if (this.state.edit) {
       this.todoListInput.focus()
-      this.todoListInput.value = this.props.t.title
+      this.todoListInput.value = this.props.post.title
     }
   }
 
@@ -29,9 +29,10 @@ export class ListTodo extends React.Component {
   }
 
   handleOnBlur(e) {
-    const { t, todoListStore } = this.props
-    if(e.target.value !== this.props.t.title) {
-      todoListStore.updatePosts(t.id, { title: e.target.value })
+    const { post, todoListStore } = this.props
+
+    if (e.target.value !== post.title) {
+      todoListStore.updatePosts(post.id, { title: e.target.value })
     }
 
     this.setState({
@@ -39,16 +40,18 @@ export class ListTodo extends React.Component {
     })
   }
 
-  handleOnClick(e, index) {
+  handleOnClick(e) {
+    const { post, todoListStore } = this.props
+
     e.stopPropagation()
-    this.props.todoListStore.deleteTodo(index)
+    todoListStore.deletePost(post.id)
   }
 
   handleKeyDown(e) {
-    const { t, todoListStore } = this.props
+    const { post, todoListStore } = this.props
 
     if (e.keyCode === 13) {
-      todoListStore.updatePosts(t.id, { title: e.target.value })
+      todoListStore.updatePosts(post.id, { title: e.target.value })
 
       this.setState({
         edit: false
@@ -57,18 +60,16 @@ export class ListTodo extends React.Component {
   }
 
   handleCopyClick(e) {
+    const { post, todoListStore } = this.props
+
     e.stopPropagation()
 
-    this.props.todoListStore.copyTodo(this.props.index)
+    todoListStore.createPost({ title: post.title })
   }
 
-  handleInsert(e) {
-    e.stopPropagation()
+  renderTodoList() {
+    const { post } = this.props
 
-    this.props.todoListStore.insertTodo(this.props.index)
-  }
-
-  renderTodoList(t) {
     if (this.state.edit) {
       return (
         <input
@@ -76,26 +77,24 @@ export class ListTodo extends React.Component {
             this.todoListInput = node
           }}
           type="text"
-          onBlur={(e) => this.handleOnBlur(e)}
-          onKeyDown={(e) => this.handleKeyDown(e)} />
+          onBlur={(e) => { this.handleOnBlur(e) }}
+          onKeyDown={(e) => { this.handleKeyDown(e) }}
+        />
       )
     }
 
     return (
-      <label>{t.title}</label>
+      <label>{post.title}</label>
     )
   }
 
   render() {
-    const { index, t } = this.props
-
     return (
-      <li className={style["todo-list"]} onClick={() => this.handleTitleClick()}>
-        {this.renderTodoList(t)}
+      <li className={style["todo-list"]} onClick={() => { this.handleTitleClick() }}>
+        {this.renderTodoList()}
         <div className={style["todo-right"]}>
-          <div className={style.copy} onClick={(e) => this.handleCopyClick(e)}>Copy</div>
-          <div className={style["insert-todo"]} onClick={(e) => this.handleInsert(e)}>+</div>
-          <div onClick={(e) => this.handleOnClick(e, index)} className={style.del}>×</div>
+          <div className={style.copy} onClick={(e) => { this.handleCopyClick(e) }}>Copy</div>
+          <div onClick={(e) => { this.handleOnClick(e) }} className={style.del}>×</div>
         </div>
       </li>
     )
