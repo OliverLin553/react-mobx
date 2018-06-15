@@ -20,3 +20,8 @@ export const updatePosts = (id, data) => axios.put(
   data,
   { headers: headersInfo() }
 )
+
+export const deletePost = id => axios.delete(
+  `/api/posts/${id}`,
+  { headers: headersInfo() }
+)

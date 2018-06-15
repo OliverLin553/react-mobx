@@ -1,12 +1,10 @@
 import React from "react"
-import { observer, inject } from "mobx-react"
 
-import TypeNew from "./type_new"
-import ListTodo from "./list_todo"
+import { default as TypeNew } from "./type_new"
+import { default as ListTodo } from "./list_todo"
 
 import style from "./style.css"
 
-@observer
 export class List extends React.Component {
   constructor(props) {
     super(props)
@@ -22,8 +20,12 @@ export class List extends React.Component {
     }
   }
 
+  getInputValue() {
+    return this.todoListInput.editField.value
+  }
+
   handleKeyDown(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       this.addTodoList(this.getInputValue())
     }
   }
@@ -33,7 +35,7 @@ export class List extends React.Component {
   }
 
   addTodoList() {
-    let allTask = this.state.todolist
+    const allTask = this.state.todolist
     allTask.push({ name: this.getInputValue() })
     this.setState({
       todolist: allTask
@@ -42,24 +44,21 @@ export class List extends React.Component {
     this.todoListInput.editField.value = ""
   }
 
-  getInputValue() {
-    return this.todoListInput.editField.value
-  }
-
   render() {
-    // const { helperStore } = this.props
-    // console.log(helperStore.Assemblies)
+    const { todolist } = this.state
+
     return (
       <div className={style["state-todo-list"]}>
         <h1>
           state Todo list
         </h1>
-        <ListTodo todo={this.state.todolist} />
+        <ListTodo todo={todolist} />
         <TypeNew
           ref={(node) => { this.todoListInput = node }}
           onKeyDown={e => this.handleKeyDown(e)}
-          todo={this.state.todolist}
-          onClick={() => this.hanleOnClick()} />
+          todo={todolist}
+          onClick={() => { this.hanleOnClick() }}
+        />
       </div>
     )
   }

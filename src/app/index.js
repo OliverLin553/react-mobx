@@ -3,9 +3,9 @@ import { observer, inject } from "mobx-react"
 import { Route, withRouter } from "react-router-dom"
 import styles from "./style.css"
 
-import List from "../components/list"
-import Menu from "../components/menu"
-import MobxList from "../components/mobx_list"
+import { default as List } from "../components/list"
+import { default as Menu } from "../components/menu"
+import { default as MobxList } from "../components/mobx_list"
 
 @withRouter
 @inject(stores => ({
