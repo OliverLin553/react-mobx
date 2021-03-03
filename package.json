@@ -31,7 +31,7 @@
     "mobx-react": "^5.0.0",
     "mobx-react-devtools": "^4.2.15",
     "prop-types": "^15.6.1",
-    "pug": "^2.0.1",
+    "pug": "^3.0.1",
     "react": "^16.2.0",
     "react-css-modules": "^4.7.1",
     "react-dom": "^16.2.0",
